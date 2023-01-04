@@ -99,11 +99,6 @@ def _AddGeneralArguments(parser):
            '2) the screenshots of every test stages (XCUITest).\n'
            'If directory is specified, the directory will not be deleted after '
            'test ends.')
-  optional_arguments.add_argument(
-    '--force_xcodebuild',
-    help='Forces the use of xcodebuild, specifically for use within logic test. '
-          'Defaults to False.',
-    action='store_true')
 
 
 
@@ -186,7 +181,11 @@ def _AddTestSubParser(subparsers):
       '--product_module_name',
       help='The product module name that will be set in the xctestrun file.'
   )
-
+  optional_arguments.add_argument(
+    '--force_xcodebuild',
+    help='Forces the use of xcodebuild, specifically for use within logic test. '
+          'Defaults to False.',
+    action='store_true')
   test_parser.set_defaults(func=_Test)
 
 
