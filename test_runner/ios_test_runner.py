@@ -99,7 +99,10 @@ def _AddGeneralArguments(parser):
            '2) the screenshots of every test stages (XCUITest).\n'
            'If directory is specified, the directory will not be deleted after '
            'test ends.')
-
+  optional_arguments.add_argument(
+      '--product_module_name',
+      help='The product module name that will be set in the xctestrun file.'
+  )
 
 
 def _AddPrepareSubParser(subparsers):
@@ -178,10 +181,6 @@ def _AddTestSubParser(subparsers):
            'ios_simulator.'
   )
   optional_arguments.add_argument(
-      '--product_module_name',
-      help='The product module name that will be set in the xctestrun file.'
-  )
-  optional_arguments.add_argument(
     '--force_xcodebuild',
     help='Forces the use of xcodebuild, specifically for use within logic test. '
           'Defaults to False.',
@@ -258,9 +257,10 @@ def _AddSimulatorTestSubParser(subparsers):
   test_parser.set_defaults(func=_SimulatorTest)
   optional_arguments = test_parser.add_argument_group('Optional arguments')
   optional_arguments.add_argument(
-      '--product_module_name',
-      help='The product module name that will be set in the xctestrun file.'
-  )
+    '--force_xcodebuild',
+    help='Forces the use of xcodebuild, specifically for use within logic test. '
+          'Defaults to False.',
+    action='store_true')
 
 
 def _BuildParser():
