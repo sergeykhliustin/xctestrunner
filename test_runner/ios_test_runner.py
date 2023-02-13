@@ -217,10 +217,10 @@ def _AddSimulatorTestSubParser(subparsers):
         session.SetLaunchOptions(_GetJson(args.launch_options_json_path))
         if not hostless:
           try:
-            simulator_obj.BootStatus().wait(timeout=60)
+            simulator_obj.BootStatus().wait(timeout=120)
           except subprocess.TimeoutExpired:
             logging.warning(
-                'The simulator %s could not be booted in 60s. Will try to run '
+                'The simulator %s could not be booted in 120s. Will try to run '
                 'test directly.', simulator_id)
         return session.RunTest(simulator_id, os_version=os_version)
       finally:
